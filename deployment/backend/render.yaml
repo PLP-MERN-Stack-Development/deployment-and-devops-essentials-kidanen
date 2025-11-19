@@ -1,0 +1,9 @@
+# deployment/backend/render.yaml (example - modify as needed)
+services:
+  - type: web
+    name: mern-backend
+    env: docker
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    repo: "<GIT_REPO_URL>"

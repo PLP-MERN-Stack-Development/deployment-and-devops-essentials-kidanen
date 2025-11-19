@@ -1,0 +1,23 @@
+// backend/src/controllers/usersController.js
+const User = require('../models/User');
+
+async function listUsers(req, res, next) {
+  try {
+    const users = await User.find().limit(50).lean();
+    res.json({ data: users });
+  } catch (err) {
+    next(err);
+  }
+}
+
+async function createUser(req, res, next) {
+  try {
+    const { name, email } = req.body;
+    const user = await User.create({ name, email });
+    res.status(201).json({ data: user });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { listUsers, createUser };
